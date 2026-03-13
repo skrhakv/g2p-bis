@@ -109,7 +109,7 @@ console.log(result);
 For pocket detection, two methods are used on AlphaFold structures: fpocket, P2Rank. Various metadata are reported along with the prediction, described in the tables below.
 
 ### fpocket
-- *Le Guilloux, Vincent, Peter Schmidtke, and Pierre Tuffery. "Fpocket: an open source platform for ligand pocket detection." BMC bioinformatics 10 (2009): 1-11. [https://doi.org/10.1186/1471-2105-10-168](https://doi.org/10.1186/1471-2105-10-168)*
+- *Vincent Le Guilloux, Peter Schmidtke, and Pierre Tuffery. "Fpocket: an open source platform for ligand pocket detection." BMC bioinformatics 10 (2009): 1-11. [https://doi.org/10.1186/1471-2105-10-168](https://doi.org/10.1186/1471-2105-10-168)*
 
 In [fpocket](https://github.com/Discngine/fpocket), pockets are ranked according the the computed fpocket druggability score, and if a residue participates in multiple pockets, it is annotated with the pocket with the highest druggability score. fpocket computes the list of residues which form the boundaries of a pocket as part of its computation.
 
@@ -130,3 +130,15 @@ In [fpocket](https://github.com/Discngine/fpocket), pockets are ranked according
 | Rank | Numerical index of the pocket sorted by Probability score (Rank 1 is the most likely binding site) | 1 to N |
 | Probability | Probability of pocket being a ligand-binding site | 0 to 1 |
 | Mean pLDDT | Average AlphaFold confidence of pocket residues | 0 to 100 |
+
+### AF2Bind
+- *Artem Gazizov, Anna Lian, Casper Goverde, Jody Mou, Sergey Ovchinnikov, and Nicholas F. Polizzi. "AF2BIND: predicting small-molecule binding sites using the pair representation of AlphaFold2." Nature Methods 23 (2026): 626–635. [https://doi.org/10.1038/s41592-026-03011-2](https://doi.org/10.1038/s41592-026-03011-2)*
+
+To predict protein-ligand binding sites, [AF2Bind](github.com/sokrypton/af2bind) uses the internal representation of [AlphaFold2](https://alphafold.ebi.ac.uk/). On top of the input protein structure, AF2Bind uses 20 "bait" amino acids as surrogates for a small-molecule ligand to extract binding signals in the absence of a true ligand. The probability of a residue being part of a binding site is determined by the model's confidence in the interaction between the protein's residues and these virtual baits.
+
+| Metadata field | Description | Range |
+| ----------- | ----------- | ----------- |
+| Rank | Numerical index of the pocket | 1 to N |
+| Residue probability | Probability of residue being a part of a ligand-binding site | 0 to 100 |
+| Mean pLDDT | Average AlphaFold confidence of pocket residues | 0 to 100 |
+
